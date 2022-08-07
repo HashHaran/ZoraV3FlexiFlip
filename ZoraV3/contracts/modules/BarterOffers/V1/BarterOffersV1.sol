@@ -66,7 +66,7 @@ contract BarterOffersV1 is
     /// @dev ERC-721 token address => ERC-721 token ID => Offer ID => Offer
     mapping(address => mapping(uint256 => mapping(uint256 => Offer))) public offers;
 
-    mapping(uint256 => mapping(address => TokenOffer)) offerTokenOfferMap;
+    mapping(uint256 => mapping(address => TokenOffer)) public offerTokenOfferMap;
 
     /// @notice The offers for a given NFT
     /// @dev ERC-721 token address => ERC-721 token ID => Offer IDs
@@ -294,41 +294,58 @@ contract BarterOffersV1 is
         uint256[] calldata _amounts
     ) external payable nonReentrant noMoreThanMaxTokens(_offerTokenAddresses) {
         Offer storage offer = offers[_targetTokenContract][_targetTokenId][_offerId];
+        bool offerChanged = false;
 
         require(offer.maker == msg.sender, "setOfferAmount must be maker");
         require(_offerTokenAddresses.length == _offerTokenIds.length, "Unequal lengths for parameters");
         require(_offerTokenIds.length == _amounts.length, "Unequal lengths for parameters");
 
         for (uint256 i = 0; i < _offerTokenAddresses.length; i++) {
-            require(!offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].isPresent, "Initial set of tokens cannot be changed");
-            // Get initial amount
-            uint256 prevAmount = offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].amount;
-            // Ensure valid update
-            require(_amounts[i] > 0 && _amounts[i] != prevAmount, "setOfferAmount invalid _amount");
+            require(offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].isPresent, "Initial set of tokens cannot be changed");
+            if (!offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].isNft) {
+                // Get initial amount
+                uint256 prevAmount = offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].amount;
+                // Ensure valid update
+                require(_amounts[i] > 0, "setOfferAmount invalid _amounts and _offerTokenIds");
+                if (_amounts[i] != prevAmount) offerChanged = true;
 
-            // If offer increase --
-            if (_amounts[i] > prevAmount) {
-                unchecked {
-                    // Get delta
-                    uint256 increaseAmount = _amounts[i] - prevAmount;
-                    // Custody increase
-                    _handleIncomingTransfer(increaseAmount, _offerTokenAddresses[i]);
-                    // Update storage
-                    offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].amount += increaseAmount;
+                // If offer increase --
+                if (_amounts[i] > prevAmount) {
+                    unchecked {
+                        // Get delta
+                        uint256 increaseAmount = _amounts[i] - prevAmount;
+                        // Custody increase
+                        _handleIncomingTransfer(increaseAmount, _offerTokenAddresses[i]);
+                        // Update storage
+                        offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].amount += increaseAmount;
+                    }
+                    // Else offer decrease --
+                } else {
+                    unchecked {
+                        // Get delta
+                        uint256 decreaseAmount = prevAmount - _amounts[i];
+                        // Refund difference
+                        _handleOutgoingTransfer(offer.maker, decreaseAmount, _offerTokenAddresses[i], USE_ALL_GAS_FLAG);
+                        // Update storage
+                        offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].amount -= decreaseAmount;
+                    }
                 }
-                // Else offer decrease --
             } else {
-                unchecked {
-                    // Get delta
-                    uint256 decreaseAmount = prevAmount - _amounts[i];
-                    // Refund difference
-                    _handleOutgoingTransfer(offer.maker, decreaseAmount, _offerTokenAddresses[i], USE_ALL_GAS_FLAG);
-                    // Update storage
-                    offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].amount -= decreaseAmount;
-                }
+                // Get initial tokenId
+                uint256 prevTokenId = offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].tokenId;
+                // Ensure valid update
+                if (_offerTokenIds[i] != prevTokenId) offerChanged = true;
+
+                _handleIncomingNftTransfer(_offerTokenIds[i], _offerTokenAddresses[i]);
+
+                _handleOutgoingNftTransfer(offer.maker, prevTokenId, _offerTokenAddresses[i]);
+
+                //Update Storage
+                offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].tokenId = _offerTokenIds[i];
             }
-            // Else other currency --
         }
+
+        require(offerChanged, "setOfferAmount invalid _amounts and _offerTokenIds");
 
         emit BarterOfferUpdated(_targetTokenContract, _targetTokenId, _offerId, offer);
     }
@@ -377,12 +394,17 @@ contract BarterOffersV1 is
 
         // Refund offer
         for (uint256 i = 0; i < offer.tokenAddresses.length; i++) {
-            _handleOutgoingTransfer(
-                offer.maker,
-                offerTokenOfferMap[_offerId][offer.tokenAddresses[i]].amount,
-                offer.tokenAddresses[i],
-                USE_ALL_GAS_FLAG
-            );
+            if (!offerTokenOfferMap[_offerId][offer.tokenAddresses[i]].isNft) {
+                _handleOutgoingTransfer(
+                    offer.maker,
+                    offerTokenOfferMap[_offerId][offer.tokenAddresses[i]].amount,
+                    offer.tokenAddresses[i],
+                    USE_ALL_GAS_FLAG
+                );
+            } else {
+                _handleOutgoingNftTransfer(offer.maker, offerTokenOfferMap[_offerId][offer.tokenAddresses[i]].tokenId, offer.tokenAddresses[i]);
+            }
+            delete offerTokenOfferMap[_offerId][offer.tokenAddresses[i]];
         }
 
         emit BarterOfferCanceled(_targetTokenContract, _targetTokenId, _offerId, offer);
@@ -454,7 +476,8 @@ contract BarterOffersV1 is
         address _targetTokenContract,
         uint256 _targetTokenId,
         uint256 _offerId,
-        address[] calldata _offerTokenAddresses,
+        address[] memory _offerTokenAddresses,
+        uint256[] calldata _offerTokenIds,
         uint256[] calldata _amounts,
         address _finder
     ) external nonReentrant noMoreThanMaxTokens(_offerTokenAddresses) {
@@ -463,12 +486,18 @@ contract BarterOffersV1 is
         require(offer.maker != address(0), "fillOffer must be active offer");
         require(IERC721(_targetTokenContract).ownerOf(_targetTokenId) == msg.sender, "fillOffer must be token owner");
         require(offer.tokenAddresses.length == _offerTokenAddresses.length, "Offer tokens length should match");
+        require(offer.tokenAddresses.length == _offerTokenIds.length, "Offer tokens length should match");
+        require(offer.tokenAddresses.length == _amounts.length, "Offer tokens length should match");
         for (uint256 i = 0; i < _offerTokenAddresses.length; i++) {
-            require(
-                !offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].isPresent &&
-                    offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].amount == _amounts[i],
-                "fillOffer _offerTokenAddresses & _amounts must match offer"
-            );
+            require(offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].isPresent, "fillOffer _offerTokenAddresses must match offer");
+            if (!offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].isNft) {
+                require(offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].amount == _amounts[i], "fillOffer _amounts must match offer");
+            } else {
+                require(
+                    offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].tokenId == _offerTokenIds[i],
+                    "fillOffer _offerTokenIds must match offer"
+                );
+            }
         }
 
         for (uint256 i = 0; i < _offerTokenAddresses.length; i++) {
@@ -499,6 +528,7 @@ contract BarterOffersV1 is
             } else {
                 _handleOutgoingNftTransfer(msg.sender, offerTokenOfferMap[_offerId][_offerTokenAddresses[i]].tokenId, _offerTokenAddresses[i]);
             }
+            delete offerTokenOfferMap[_offerId][_offerTokenAddresses[i]];
         }
         // Transfer NFT to offer maker
         erc721TransferHelper.transferFrom(_targetTokenContract, msg.sender, offer.maker, _targetTokenId);
