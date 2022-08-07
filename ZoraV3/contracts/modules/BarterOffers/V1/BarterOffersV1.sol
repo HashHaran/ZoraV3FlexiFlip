@@ -224,6 +224,7 @@ contract BarterOffersV1 is
         });
 
         for (uint256 i = 0; i < _offerTokenAddresses.length; i++) {
+            require(!offerTokenOfferMap[offerCount][_offerTokenAddresses[i]].isPresent, "Same token address cannot repeat");
             offerTokenOfferMap[offerCount][_offerTokenAddresses[i]] = TokenOffer({
                 isPresent: true,
                 isNft: _isNfts[i],

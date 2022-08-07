@@ -95,14 +95,15 @@ contract BarterOffersV1IntegrationTest is DSTest {
         seller.setApprovalForModule(address(barterOffers), true);
         buyer.setApprovalForModule(address(barterOffers), true);
 
-        // Seller approve ERC20TransferHelper
-        vm.prank(address(seller));
+        // Maker approve ERC20TransferHelper
+        vm.startPrank(address(seller));
         weth.approve(address(erc20TransferHelper), 50 ether);
-        token.setApprovalForAll(address(barterOffers), true);
+        token.setApprovalForAll(address(erc721TransferHelper), true);
+        vm.stopPrank();
 
-        // Buyer approve BarterOffers
+        // Taker approve ERC721TransferHelper
         vm.prank(address(buyer));
-        token.setApprovalForAll(address(barterOffers), true);
+        token.setApprovalForAll(address(erc721TransferHelper), true);
     }
 
     /// ------------ ETH Offer ------------ ///

@@ -369,13 +369,15 @@ contract BarterOffersV1Test is DSTest {
 
         offers.createOffer{value: 1 ether}(address(token), 0, _offerTokenAddresses, _isNfts, _offerTokenIds, _amounts, 1000);
 
-        (, , uint256 beforeTokenId, uint256 beforeAmount, ) = offers.offerTokenOfferMap(1, address(token));
+        (, , uint256 beforeTokenId, , ) = offers.offerTokenOfferMap(1, address(token));
+        (, , , uint256 beforeAmount, ) = offers.offerTokenOfferMap(1, address(0));
         require(beforeAmount == 1 ether);
         require(beforeTokenId == 1);
 
         offers.cancelOffer(address(token), 0, 1);
 
-        (, , uint256 afterTokenId, uint256 afterAmount, ) = offers.offerTokenOfferMap(1, address(token));
+        (, , uint256 afterTokenId, , ) = offers.offerTokenOfferMap(1, address(token));
+        (, , , uint256 afterAmount, ) = offers.offerTokenOfferMap(1, address(0));
         require(afterAmount == 0);
         require(afterTokenId == 0);
 
