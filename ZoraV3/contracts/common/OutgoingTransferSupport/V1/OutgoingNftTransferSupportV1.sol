@@ -1,13 +1,12 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity 0.8.10;
 
-import {ERC721Holder} from "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
 /// @title OutgoingNftTransferSupportV1
 /// @author HashHaran
 /// @notice This contract extension supports paying out NFTs to an external recipient
-contract OutgoingNftTransferSupportV1 is ERC721Holder {
+contract OutgoingNftTransferSupportV1 {
     /// @notice Handle an outgoing NFT transfer
     /// @param _dest The destination for the NFT transfer
     /// @param _tokenId The token id to be sent
