@@ -259,12 +259,17 @@ contract FlexiBarterOffersV1 is
 
         require(offer.maker == msg.sender, "updateOffer must be maker");
 
+        // Get initial amount
+        uint256 prevAmount = offer.amount;
+        require(
+            (_amount > 0 && (_currency != offer.currency || _amount != prevAmount)) ||
+                (offer.nft != _offerTokenContract || offer.tokenId != _offerTokenId),
+            "updateOffer invalid params"
+        );
+
         // If same currency --
         if (_currency == offer.currency) {
-            // Get initial amount
-            uint256 prevAmount = offer.amount;
             // Ensure valid update
-            require(_amount > 0 && _amount != prevAmount, "updateOffer invalid _amount");
 
             // If offer increase --
             if (_amount > prevAmount) {
@@ -277,7 +282,7 @@ contract FlexiBarterOffersV1 is
                     offer.amount += increaseAmount;
                 }
                 // Else offer decrease --
-            } else {
+            } else if ((_amount < prevAmount)) {
                 unchecked {
                     // Get delta
                     uint256 decreaseAmount = prevAmount - _amount;
@@ -299,9 +304,14 @@ contract FlexiBarterOffersV1 is
             offer.amount = _amount;
         }
 
-        if (offer.nft != _offerTokenContract && offer.tokenId != _offerTokenId) {
+        if (offer.nft != _offerTokenContract) {
             _handleIncomingNftTransfer(_offerTokenId, _offerTokenContract);
             _handleOutgoingNftTransfer(offer.maker, offer.tokenId, offer.nft);
+            offer.nft = _offerTokenContract;
+        } else if (offer.tokenId != _offerTokenId) {
+            _handleIncomingNftTransfer(_offerTokenId, _offerTokenContract);
+            _handleOutgoingNftTransfer(offer.maker, offer.tokenId, offer.nft);
+            offer.tokenId = _offerTokenId;
         }
 
         emit OfferUpdated(_tokenContract, _tokenId, _offerId, offer);
@@ -458,7 +468,7 @@ contract FlexiBarterOffersV1 is
         _handleOutgoingNftTransfer(msg.sender, offer.tokenId, offer.nft);
 
         // Transfer NFT to offer maker
-        _handleOutgoingNftTransfer(offer.maker, _tokenId, _tokenContract);
+        erc721TransferHelper.transferFrom(_tokenContract, msg.sender, offer.maker, _tokenId);
 
         FlexiBarterExchangeDetails memory userAExchangeDetails = FlexiBarterExchangeDetails({
             currencyTokenContract: offer.currency,
