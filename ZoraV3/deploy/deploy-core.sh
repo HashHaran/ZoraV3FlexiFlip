@@ -91,27 +91,27 @@ else
 fi
 FEE_SETTINGS_ADDR=$(cast --to-checksum-address $FEE_SETTINGS_ADDR)
 
-echo "Submitting contract to etherscan for verification..."
-for I in 0 1 2 3 4
-do
-    {
-        if FEE_SETTINGS_VERIFY_OUTPUT=$(forge verify-contract --chain-id $CHAIN_ID --num-of-optimizations 500000 --compiler-version v0.8.10+commit.fc410830 "$FEE_SETTINGS_ADDR" contracts/auxiliary/ZoraProtocolFeeSettings/ZoraProtocolFeeSettings.sol:ZoraProtocolFeeSettings "$ETHERSCAN_API_KEY")
-        then
-            echo "Submitted contract for verification."
-            echo "Output:"
-            echo "$FEE_SETTINGS_VERIFY_OUTPUT"
-            break
-        else
-            if (( 4 > $I ))
-            then
-                sleep 15
-            else
-                echo "Unable to submit contract verification. Exiting."
-                exit 1
-            fi
-        fi
-    }
-done
+# echo "Submitting contract to etherscan for verification..."
+# for I in 0 1 2 3 4
+# do
+#     {
+#         if FEE_SETTINGS_VERIFY_OUTPUT=$(forge verify-contract --chain-id $CHAIN_ID --num-of-optimizations 500000 --compiler-version v0.8.10+commit.fc410830 "$FEE_SETTINGS_ADDR" contracts/auxiliary/ZoraProtocolFeeSettings/ZoraProtocolFeeSettings.sol:ZoraProtocolFeeSettings "$ETHERSCAN_API_KEY")
+#         then
+#             echo "Submitted contract for verification."
+#             echo "Output:"
+#             echo "$FEE_SETTINGS_VERIFY_OUTPUT"
+#             break
+#         else
+#             if (( 4 > $I ))
+#             then
+#                 sleep 30
+#             else
+#                 echo "Unable to submit contract verification. Exiting."
+#                 exit 1
+#             fi
+#         fi
+#     }
+# done
 
 
 echo ""
@@ -130,28 +130,28 @@ else
 fi
 MODULE_MANAGER_ADDR=$(cast --to-checksum-address $MODULE_MANAGER_ADDR)
 
-echo "Submitting contract to etherscan for verification..."
-MODULE_MANAGER_ENCODED_ARGS=$(cast abi-encode "f(address,address)" "$REGISTRAR" "$FEE_SETTINGS_ADDR")
-for I in 0 1 2 3 4
-do
-    {
-        if MODULE_MANAGER_VERIFY_OUTPUT=$(forge verify-contract --chain-id $CHAIN_ID --num-of-optimizations 500000 --constructor-args "$MODULE_MANAGER_ENCODED_ARGS" --compiler-version v0.8.10+commit.fc410830 "$MODULE_MANAGER_ADDR" contracts/ZoraModuleManager.sol:ZoraModuleManager "$ETHERSCAN_API_KEY")
-        then
-            echo "Submitted contract for verification."
-            echo "Output:"
-            echo "$MODULE_MANAGER_VERIFY_OUTPUT"
-            break
-        else
-            if (( 4 > $I ))
-            then
-                sleep 10
-            else
-                echo "Unable to submit contract verification. Exiting."
-                exit 1
-            fi
-        fi
-    }
-done
+# echo "Submitting contract to etherscan for verification..."
+# MODULE_MANAGER_ENCODED_ARGS=$(cast abi-encode "f(address,address)" "$REGISTRAR" "$FEE_SETTINGS_ADDR")
+# for I in 0 1 2 3 4
+# do
+#     {
+#         if MODULE_MANAGER_VERIFY_OUTPUT=$(forge verify-contract --chain-id $CHAIN_ID --num-of-optimizations 500000 --constructor-args "$MODULE_MANAGER_ENCODED_ARGS" --compiler-version v0.8.10+commit.fc410830 "$MODULE_MANAGER_ADDR" contracts/ZoraModuleManager.sol:ZoraModuleManager "$ETHERSCAN_API_KEY")
+#         then
+#             echo "Submitted contract for verification."
+#             echo "Output:"
+#             echo "$MODULE_MANAGER_VERIFY_OUTPUT"
+#             break
+#         else
+#             if (( 4 > $I ))
+#             then
+#                 sleep 30
+#             else
+#                 echo "Unable to submit contract verification. Exiting."
+#                 exit 1
+#             fi
+#         fi
+#     }
+# done
 
 
 echo ""
