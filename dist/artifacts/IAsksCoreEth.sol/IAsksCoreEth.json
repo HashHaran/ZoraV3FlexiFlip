@@ -1,0 +1,563 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_tokenContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancelAsk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_tokenContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
+        }
+      ],
+      "name": "createAsk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_tokenContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "fillAsk",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_tokenContract",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
+        }
+      ],
+      "name": "setAskPrice",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "cancelAsk(address,uint256)": "40b80746",
+    "createAsk(address,uint256,uint256)": "c4f0ee36",
+    "fillAsk(address,uint256)": "68b5a9a8",
+    "setAskPrice(address,uint256,uint256)": "0be48095"
+  },
+  "ast": {
+    "absolutePath": "contracts/modules/Asks/Core/ETH/IAsksCoreEth.sol",
+    "id": 2456,
+    "exportedSymbols": {
+      "IAsksCoreEth": [
+        2455
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "36:1288:13",
+    "nodes": [
+      {
+        "id": 2417,
+        "nodeType": "PragmaDirective",
+        "src": "36:23:13",
+        "literals": [
+          "solidity",
+          "0.8",
+          ".10"
+        ]
+      },
+      {
+        "id": 2455,
+        "nodeType": "ContractDefinition",
+        "src": "148:1175:13",
+        "nodes": [
+          {
+            "id": 2428,
+            "nodeType": "FunctionDefinition",
+            "src": "387:116:13",
+            "documentation": {
+              "id": 2419,
+              "nodeType": "StructuredDocumentation",
+              "src": "177:205:13",
+              "text": "@notice Creates an ask for a given NFT\n @param _tokenContract The address of the ERC-721 token\n @param _tokenId The id of the ERC-721 token\n @param _price The price to fill the ask"
+            },
+            "functionSelector": "c4f0ee36",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createAsk",
+            "nameLocation": "396:9:13",
+            "parameters": {
+              "id": 2426,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2421,
+                  "mutability": "mutable",
+                  "name": "_tokenContract",
+                  "nameLocation": "423:14:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2428,
+                  "src": "415:22:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2420,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "415:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2423,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "455:8:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2428,
+                  "src": "447:16:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2422,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "447:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2425,
+                  "mutability": "mutable",
+                  "name": "_price",
+                  "nameLocation": "481:6:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2428,
+                  "src": "473:14:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2424,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "473:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "405:88:13"
+            },
+            "returnParameters": {
+              "id": 2427,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "502:0:13"
+            },
+            "scope": 2455,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 2438,
+            "nodeType": "FunctionDefinition",
+            "src": "721:118:13",
+            "documentation": {
+              "id": 2429,
+              "nodeType": "StructuredDocumentation",
+              "src": "509:207:13",
+              "text": "@notice Updates the ask price for a given NFT\n @param _tokenContract The address of the ERC-721 token\n @param _tokenId The id of the ERC-721 token\n @param _price The ask price to set"
+            },
+            "functionSelector": "0be48095",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setAskPrice",
+            "nameLocation": "730:11:13",
+            "parameters": {
+              "id": 2436,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2431,
+                  "mutability": "mutable",
+                  "name": "_tokenContract",
+                  "nameLocation": "759:14:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2438,
+                  "src": "751:22:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2430,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "751:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2433,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "791:8:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2438,
+                  "src": "783:16:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2432,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "783:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2435,
+                  "mutability": "mutable",
+                  "name": "_price",
+                  "nameLocation": "817:6:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2438,
+                  "src": "809:14:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2434,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "809:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "741:88:13"
+            },
+            "returnParameters": {
+              "id": 2437,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "838:0:13"
+            },
+            "scope": 2455,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 2446,
+            "nodeType": "FunctionDefinition",
+            "src": "1008:70:13",
+            "documentation": {
+              "id": 2439,
+              "nodeType": "StructuredDocumentation",
+              "src": "845:158:13",
+              "text": "@notice Cancels the ask for a given NFT\n @param _tokenContract The address of the ERC-721 token\n @param _tokenId The id of the ERC-721 token"
+            },
+            "functionSelector": "40b80746",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cancelAsk",
+            "nameLocation": "1017:9:13",
+            "parameters": {
+              "id": 2444,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2441,
+                  "mutability": "mutable",
+                  "name": "_tokenContract",
+                  "nameLocation": "1035:14:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2446,
+                  "src": "1027:22:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2440,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1027:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2443,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "1059:8:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2446,
+                  "src": "1051:16:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2442,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1051:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1026:42:13"
+            },
+            "returnParameters": {
+              "id": 2445,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1077:0:13"
+            },
+            "scope": 2455,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 2454,
+            "nodeType": "FunctionDefinition",
+            "src": "1245:76:13",
+            "documentation": {
+              "id": 2447,
+              "nodeType": "StructuredDocumentation",
+              "src": "1084:156:13",
+              "text": "@notice Fills the ask for a given NFT\n @param _tokenContract The address of the ERC-721 token\n @param _tokenId The id of the ERC-721 token"
+            },
+            "functionSelector": "68b5a9a8",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "fillAsk",
+            "nameLocation": "1254:7:13",
+            "parameters": {
+              "id": 2452,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 2449,
+                  "mutability": "mutable",
+                  "name": "_tokenContract",
+                  "nameLocation": "1270:14:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2454,
+                  "src": "1262:22:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2448,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1262:7:13",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 2451,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "1294:8:13",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 2454,
+                  "src": "1286:16:13",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 2450,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1286:7:13",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1261:42:13"
+            },
+            "returnParameters": {
+              "id": 2453,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1320:0:13"
+            },
+            "scope": 2455,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IAsksCoreEth",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 2418,
+          "nodeType": "StructuredDocumentation",
+          "src": "61:87:13",
+          "text": "@title IAsksCoreEth\n @author kulkarohan\n @notice Interface for Asks Core ETH"
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          2455
+        ],
+        "name": "IAsksCoreEth",
+        "nameLocation": "158:12:13",
+        "scope": 2456,
+        "usedErrors": []
+      }
+    ],
+    "license": "GPL-3.0"
+  },
+  "id": 13
+}

@@ -1,0 +1,19 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "contracts/test/modules/FlexiBarterOffers/V1/FlexiBarterOffers.t.sol",
+    "id": 8238,
+    "exportedSymbols": {},
+    "nodeType": "SourceUnit",
+    "src": "0:0:17"
+  },
+  "id": 17
+}

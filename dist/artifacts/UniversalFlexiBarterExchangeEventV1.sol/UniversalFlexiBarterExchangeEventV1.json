@@ -1,0 +1,412 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userA",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userB",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "currencyTokenContract",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "nftTokenContract",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct UniversalFlexiBarterExchangeEventV1.FlexiBarterExchangeDetails",
+          "name": "a",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "currencyTokenContract",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "nftTokenContract",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct UniversalFlexiBarterExchangeEventV1.FlexiBarterExchangeDetails",
+          "name": "b",
+          "type": "tuple"
+        }
+      ],
+      "name": "FlexiBarterExchangeExecuted",
+      "type": "event"
+    }
+  ],
+  "bytecode": {
+    "object": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220b87022f252451917161340aaa4a7a7894f0575fa4ecb01ad6d2ec11be729104a64736f6c634300080a0033",
+    "sourceMap": "198:900:10:-:0;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x6080604052600080fdfea2646970667358221220b87022f252451917161340aaa4a7a7894f0575fa4ecb01ad6d2ec11be729104a64736f6c634300080a0033",
+    "sourceMap": "198:900:10:-:0;;;;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {},
+  "ast": {
+    "absolutePath": "contracts/common/UniversalFlexiBarterExchangeEvent/V1/UniversalFlexiBarterExchangeEventV1.sol",
+    "id": 1487,
+    "exportedSymbols": {
+      "UniversalFlexiBarterExchangeEventV1": [
+        1486
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "36:1063:10",
+    "nodes": [
+      {
+        "id": 1462,
+        "nodeType": "PragmaDirective",
+        "src": "36:23:10",
+        "literals": [
+          "solidity",
+          "0.8",
+          ".10"
+        ]
+      },
+      {
+        "id": 1486,
+        "nodeType": "ContractDefinition",
+        "src": "198:900:10",
+        "nodes": [
+          {
+            "id": 1472,
+            "nodeType": "StructDefinition",
+            "src": "539:163:10",
+            "canonicalName": "UniversalFlexiBarterExchangeEventV1.FlexiBarterExchangeDetails",
+            "members": [
+              {
+                "constant": false,
+                "id": 1465,
+                "mutability": "mutable",
+                "name": "currencyTokenContract",
+                "nameLocation": "591:21:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 1472,
+                "src": "583:29:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1464,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "583:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1467,
+                "mutability": "mutable",
+                "name": "nftTokenContract",
+                "nameLocation": "630:16:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 1472,
+                "src": "622:24:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1466,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "622:7:10",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1469,
+                "mutability": "mutable",
+                "name": "tokenId",
+                "nameLocation": "664:7:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 1472,
+                "src": "656:15:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 1468,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "656:7:10",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1471,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "689:6:10",
+                "nodeType": "VariableDeclaration",
+                "scope": 1472,
+                "src": "681:14:10",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 1470,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "681:7:10",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "FlexiBarterExchangeDetails",
+            "nameLocation": "546:26:10",
+            "scope": 1486,
+            "visibility": "public"
+          },
+          {
+            "id": 1485,
+            "nodeType": "EventDefinition",
+            "src": "956:140:10",
+            "anonymous": false,
+            "documentation": {
+              "id": 1473,
+              "nodeType": "StructuredDocumentation",
+              "src": "708:243:10",
+              "text": "@notice Emitted when a token exchange is executed\n @param userA The address of user A\n @param userB The address of a user B\n @param a The metadata of user A's exchange\n @param b The metadata of user B's exchange"
+            },
+            "name": "FlexiBarterExchangeExecuted",
+            "nameLocation": "962:27:10",
+            "parameters": {
+              "id": 1484,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1475,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "userA",
+                  "nameLocation": "1006:5:10",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1485,
+                  "src": "990:21:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1474,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "990:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1477,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "userB",
+                  "nameLocation": "1029:5:10",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1485,
+                  "src": "1013:21:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1476,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1013:7:10",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1480,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "a",
+                  "nameLocation": "1063:1:10",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1485,
+                  "src": "1036:28:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_FlexiBarterExchangeDetails_$1472_memory_ptr",
+                    "typeString": "struct UniversalFlexiBarterExchangeEventV1.FlexiBarterExchangeDetails"
+                  },
+                  "typeName": {
+                    "id": 1479,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1478,
+                      "name": "FlexiBarterExchangeDetails",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1472,
+                      "src": "1036:26:10"
+                    },
+                    "referencedDeclaration": 1472,
+                    "src": "1036:26:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_FlexiBarterExchangeDetails_$1472_storage_ptr",
+                      "typeString": "struct UniversalFlexiBarterExchangeEventV1.FlexiBarterExchangeDetails"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1483,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "b",
+                  "nameLocation": "1093:1:10",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1485,
+                  "src": "1066:28:10",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_FlexiBarterExchangeDetails_$1472_memory_ptr",
+                    "typeString": "struct UniversalFlexiBarterExchangeEventV1.FlexiBarterExchangeDetails"
+                  },
+                  "typeName": {
+                    "id": 1482,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1481,
+                      "name": "FlexiBarterExchangeDetails",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1472,
+                      "src": "1066:26:10"
+                    },
+                    "referencedDeclaration": 1472,
+                    "src": "1066:26:10",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_FlexiBarterExchangeDetails_$1472_storage_ptr",
+                      "typeString": "struct UniversalFlexiBarterExchangeEventV1.FlexiBarterExchangeDetails"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "989:106:10"
+            }
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "UniversalFlexiBarterExchangeEventV1",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1463,
+          "nodeType": "StructuredDocumentation",
+          "src": "61:137:10",
+          "text": "@title UniversalExchangeEvent V1\n @author HashHaran\n @notice This module generalizes indexing token exchanges across all of V3"
+        },
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          1486
+        ],
+        "name": "UniversalFlexiBarterExchangeEventV1",
+        "nameLocation": "207:35:10",
+        "scope": 1487,
+        "usedErrors": []
+      }
+    ],
+    "license": "GPL-3.0"
+  },
+  "id": 10
+}

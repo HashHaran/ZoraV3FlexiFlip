@@ -1,0 +1,374 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userA",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userB",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "tokenContract",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct UniversalExchangeEventV1.ExchangeDetails",
+          "name": "a",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "tokenContract",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "indexed": false,
+          "internalType": "struct UniversalExchangeEventV1.ExchangeDetails",
+          "name": "b",
+          "type": "tuple"
+        }
+      ],
+      "name": "ExchangeExecuted",
+      "type": "event"
+    }
+  ],
+  "bytecode": {
+    "object": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212209cd939a637272d9abfcda9f2ac23d3ff42fe8c2deeb2bc182ca511c06c42b22664736f6c634300080a0033",
+    "sourceMap": "215:716:9:-:0;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x6080604052600080fdfea26469706673582212209cd939a637272d9abfcda9f2ac23d3ff42fe8c2deeb2bc182ca511c06c42b22664736f6c634300080a0033",
+    "sourceMap": "215:716:9:-:0;;;;;",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {},
+  "ast": {
+    "absolutePath": "contracts/common/UniversalExchangeEvent/V1/UniversalExchangeEventV1.sol",
+    "id": 1465,
+    "exportedSymbols": {
+      "UniversalExchangeEventV1": [
+        1464
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "36:896:9",
+    "nodes": [
+      {
+        "id": 1442,
+        "nodeType": "PragmaDirective",
+        "src": "36:23:9",
+        "literals": [
+          "solidity",
+          "0.8",
+          ".10"
+        ]
+      },
+      {
+        "id": 1464,
+        "nodeType": "ContractDefinition",
+        "src": "215:716:9",
+        "nodes": [
+          {
+            "id": 1450,
+            "nodeType": "StructDefinition",
+            "src": "458:110:9",
+            "canonicalName": "UniversalExchangeEventV1.ExchangeDetails",
+            "members": [
+              {
+                "constant": false,
+                "id": 1445,
+                "mutability": "mutable",
+                "name": "tokenContract",
+                "nameLocation": "499:13:9",
+                "nodeType": "VariableDeclaration",
+                "scope": 1450,
+                "src": "491:21:9",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 1444,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "491:7:9",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1447,
+                "mutability": "mutable",
+                "name": "tokenId",
+                "nameLocation": "530:7:9",
+                "nodeType": "VariableDeclaration",
+                "scope": 1450,
+                "src": "522:15:9",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 1446,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "522:7:9",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1449,
+                "mutability": "mutable",
+                "name": "amount",
+                "nameLocation": "555:6:9",
+                "nodeType": "VariableDeclaration",
+                "scope": 1450,
+                "src": "547:14:9",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 1448,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "547:7:9",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "ExchangeDetails",
+            "nameLocation": "465:15:9",
+            "scope": 1464,
+            "visibility": "public"
+          },
+          {
+            "id": 1463,
+            "nodeType": "EventDefinition",
+            "src": "822:107:9",
+            "anonymous": false,
+            "documentation": {
+              "id": 1451,
+              "nodeType": "StructuredDocumentation",
+              "src": "574:243:9",
+              "text": "@notice Emitted when a token exchange is executed\n @param userA The address of user A\n @param userB The address of a user B\n @param a The metadata of user A's exchange\n @param b The metadata of user B's exchange"
+            },
+            "name": "ExchangeExecuted",
+            "nameLocation": "828:16:9",
+            "parameters": {
+              "id": 1462,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1453,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "userA",
+                  "nameLocation": "861:5:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1463,
+                  "src": "845:21:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1452,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "845:7:9",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1455,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "userB",
+                  "nameLocation": "884:5:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1463,
+                  "src": "868:21:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1454,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "868:7:9",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1458,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "a",
+                  "nameLocation": "907:1:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1463,
+                  "src": "891:17:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ExchangeDetails_$1450_memory_ptr",
+                    "typeString": "struct UniversalExchangeEventV1.ExchangeDetails"
+                  },
+                  "typeName": {
+                    "id": 1457,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1456,
+                      "name": "ExchangeDetails",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1450,
+                      "src": "891:15:9"
+                    },
+                    "referencedDeclaration": 1450,
+                    "src": "891:15:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ExchangeDetails_$1450_storage_ptr",
+                      "typeString": "struct UniversalExchangeEventV1.ExchangeDetails"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1461,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "b",
+                  "nameLocation": "926:1:9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1463,
+                  "src": "910:17:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ExchangeDetails_$1450_memory_ptr",
+                    "typeString": "struct UniversalExchangeEventV1.ExchangeDetails"
+                  },
+                  "typeName": {
+                    "id": 1460,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1459,
+                      "name": "ExchangeDetails",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 1450,
+                      "src": "910:15:9"
+                    },
+                    "referencedDeclaration": 1450,
+                    "src": "910:15:9",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ExchangeDetails_$1450_storage_ptr",
+                      "typeString": "struct UniversalExchangeEventV1.ExchangeDetails"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "844:84:9"
+            }
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "UniversalExchangeEventV1",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1443,
+          "nodeType": "StructuredDocumentation",
+          "src": "61:154:9",
+          "text": "@title UniversalExchangeEvent V1\n @author kulkarohan <rohan@zora.co>\n @notice This module generalizes indexing token exchanges across all of V3"
+        },
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          1464
+        ],
+        "name": "UniversalExchangeEventV1",
+        "nameLocation": "224:24:9",
+        "scope": 1465,
+        "usedErrors": []
+      }
+    ],
+    "license": "GPL-3.0"
+  },
+  "id": 9
+}
