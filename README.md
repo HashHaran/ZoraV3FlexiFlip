@@ -1,5 +1,15 @@
 # V3 𓀨
 
+## Barter Offers
+
+### Brief
+
+A new module supporting NFT barter has been added to ZORA V3 protocol. The module supports buying NFTs with not just crypto currencies but also with NFTs. It enables the user to buy an NFT with a combination of NFTs and crypto currencies.
+
+### Road Map
+
+To add bartering functionality to other modules like Asks and Reserve Auction.
+
 This repository contains the core contracts that compose the ZORA V3 Protocol.
 
 This protocol is a [Hyperstructure](https://www.jacob.energy/hyperstructures.html). It is unstoppable, free, expansive, permissionless, and credibly neutral.
